@@ -1,0 +1,8 @@
+---
+version: "3.5"
+
+services:
+  # TODO
+  synapse:
+    image: docker.io/matrixdotorg/synapse:1.49.2
+    network_mode: host

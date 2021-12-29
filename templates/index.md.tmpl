@@ -1,0 +1,20 @@
+---
+page_title: "Provider: Synapse"
+description: |-
+  The Synapse provider provides resources to interact with a Synapse admin API.
+---
+
+# Synapse Provider
+
+The Synapse provider provides resources to interact with a Synapse admin API.
+
+You must create an admin user like indicated in [Synapse's
+documentation](https://matrix-org.github.io/synapse/latest/usage/administration/admin_api/index.html).
+
+You can then use the `username` and `password` as the example below shows.
+
+## Example Usage
+
+{{tffile "examples/provider/provider.tf"}}
+
+{{ .SchemaMarkdown | trimspace }}
