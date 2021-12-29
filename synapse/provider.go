@@ -5,6 +5,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"gitlab.com/lama-corp/infra/packages/gosynapse"
 	"maunium.net/go/mautrix"
 )
 
@@ -30,8 +31,12 @@ func Provider() *schema.Provider {
 				DefaultFunc: schema.EnvDefaultFunc("MATRIX_PASSWORD", nil),
 			},
 		},
-		ResourcesMap:         map[string]*schema.Resource{},
-		DataSourcesMap:       map[string]*schema.Resource{},
+		ResourcesMap: map[string]*schema.Resource{
+			"synapse_user": resourceUser(),
+		},
+		DataSourcesMap: map[string]*schema.Resource{
+			"synapse_user": datasourceUser(),
+		},
 		ConfigureContextFunc: providerConfigure,
 	}
 }
@@ -77,5 +82,7 @@ func providerConfigure(ctx context.Context, d *schema.ResourceData) (interface{}
 		return nil, diags
 	}
 
-	return client, diags
+	cli := gosynapse.NewClient(client)
+
+	return cli, diags
 }
