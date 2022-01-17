@@ -32,7 +32,8 @@ func Provider() *schema.Provider {
 			},
 		},
 		ResourcesMap: map[string]*schema.Resource{
-			"synapse_user": resourceUser(),
+			"synapse_membership": resourceMembership(),
+			"synapse_user":       resourceUser(),
 		},
 		DataSourcesMap: map[string]*schema.Resource{
 			"synapse_user": datasourceUser(),
